@@ -1,3 +1,5 @@
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/bukotsunikki.svg?style=social&label=Follow%20%40triquetrx)](https://twitter.com/triqutrx)
+
 # MoviesApp
 
 It is the frontend application for movies application built using angular cli v10.2.4

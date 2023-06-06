@@ -1,0 +1,166 @@
+<div class="container-fluid my-3">
+  <h4>Add new movie</h4>
+  <mat-divider class="my-2"></mat-divider>
+  <div
+    *ngIf="alert?.isAlert"
+    class="alert alert-{{ alert?.alertType }} mb-2"
+    role="alert"
+  >
+    {{ alert?.alertMessage }}
+  </div>
+  <form #movieForm="ngForm" (ngSubmit)="addMovie(movieForm)">
+    <mat-form-field appearance="outline">
+      <mat-label>Movie Name</mat-label>
+      <input
+        matInput
+        ngModel
+        type="text"
+        name="movieName"
+        #movieName="ngModel"
+        placeholder="Movie Name"
+        required
+      />
+      <mat-error *ngIf="movieName.invalid"> Movie Name is required </mat-error>
+    </mat-form-field>
+    <div class="row">
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Release Date</mat-label>
+          <input
+            matInput
+            ngModel
+            name="releaseDate"
+            #releaseDate="ngModel"
+            [matDatepicker]="picker"
+            placeholder="Release Date"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="releaseDate.invalid">
+            Release Date is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Movie Poster Link</mat-label>
+          <input
+            matInput
+            type="text"
+            ngModel
+            name="moviePosterLink"
+            #moviePosterLink="ngModel"
+            placeholder="Movie Poster Link"
+            required
+          />
+          <mat-error *ngIf="moviePosterLink.invalid">
+            Movie Poster Link is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Select actors starring</mat-label>
+      <mat-chip-list #chipList>
+        <mat-chip
+          *ngFor="let chip of actorsChips"
+          [selectable]="true"
+          [removable]="true"
+          (removed)="removeChip(chip)"
+        >
+          {{ chip?.actorName }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+      <input
+        type="text"
+        placeholder="Select Actors"
+        matInput
+        [(ngModel)]="starring"
+        name="starring"
+        [matChipInputFor]="chipList"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="
+            let actor of (allActors | async)?.payload
+              | searchActor : starring
+              | slice : 0 : 4
+          "
+        >
+          <div (click)="addActor(actor)">
+            <mat-checkbox [checked]="actors.includes(actors?._id)">
+              {{ actor?.actorName }}
+            </mat-checkbox>
+          </div>
+        </mat-option>
+        <mat-option class="text-secondary" (click)="addNewActor()">
+          No Actors found, add new?
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-error
+      id="actors-error"
+      *ngIf="movieForm.submitted && actors?.length === 0"
+    >
+      Actors must be selected
+    </mat-error>
+    <button
+      type="button"
+      class="mb-2"
+      mat-stroked-button
+      (click)="addShow()"
+      color="primary"
+    >
+      Add Shows
+    </button>
+    <mat-divider></mat-divider>
+    <div class="row px-3 mt-2">
+      <div class="col">
+        <h6 class="text-secondary">Shows Added</h6>
+      </div>
+      <div class="col text-end">
+        <h6>x{{ shows.length }}</h6>
+      </div>
+      <mat-divider></mat-divider>
+      <ng-container *ngIf="shows?.length > 0; else noShows">
+        <div class="shows my-3" *ngFor="let show of shows; let i = index">
+          <div class="row">
+            <div class="col-md-2 col">
+              <h6>{{ theatres[i] }}:</h6>
+            </div>
+            <div
+              class="col d-md-block d-none"
+              *ngFor="let showDetail of show?.showDetails; let i = index"
+            >
+              <h6>{{ showDetail?.showTime }} | {{ showDetail?.seats }}</h6>
+            </div>
+            <div class="col d-md-none d-block">
+              {{ show?.showDetails?.length }} shows
+            </div>
+            <div class="col-md-1 col">
+              <button mat-flat-button color="accent" (click)="deleteShow(show)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noShows>
+        <p class="text-secondary my-3 text-center">No shows added</p>
+      </ng-template>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row mt-3">
+      <div class="col"></div>
+      <div class="col">
+        <button type="submit" mat-flat-button color="primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

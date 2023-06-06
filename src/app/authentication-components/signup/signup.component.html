@@ -1,0 +1,172 @@
+<div class="container-fluid mt-md-4 my-3">
+  <div
+    class="alert alert-{{ alert?.alertType }}"
+    *ngIf="alert?.isAlert"
+    role="alert"
+  >
+    {{ alert?.alertMessage }}
+  </div>
+  <form method="post" #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+    <div class="row">
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            ngModel
+            placeholder="First Name"
+            name="firstName"
+            #firstName="ngModel"
+            required
+          />
+          <mat-error *ngIf="firstName.invalid">
+            First Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            ngModel
+            placeholder="Last Name"
+            name="lastName"
+            #lastName="ngModel"
+            required
+          />
+          <mat-error *ngIf="lastName.invalid">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Number</mat-label>
+          <input
+            matInput
+            ngModel
+            name="contactNumber"
+            type="tel"
+            pattern="[0-9]{8,10}"
+            placeholder="Contact Number"
+            #contactNumber="ngModel"
+            required
+          />
+          <mat-error *ngIf="contactNumber.invalid">
+            <p *ngIf="contactNumber.errors.required">
+              Contact Number is required
+            </p>
+            <p *ngIf="contactNumber.errors.pattern">
+              Phone number must contain digits only
+            </p>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Id</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="Email Id"
+            name="email"
+            ngModel
+            #email="ngModel"
+            required
+          />
+          <mat-error *ngIf="email.invalid">Email Id is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Username"
+            name="loginId"
+            ngModel
+            #loginId="ngModel"
+            required
+          />
+          <mat-error *ngIf="loginId.invalid">Username is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Sex assigned at birth</mat-label>
+          <mat-select
+            matInput
+            placeholder="Sex assigned at birth"
+            ngModel
+            #gender="ngModel"
+            name="gender"
+            required
+          >
+            <mat-option value="MALE">Male</mat-option>
+            <mat-option value="FEMALE">Female</mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="gender.invalid">Username is required</mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            name="password"
+            ngModel
+            required
+            minlength="6"
+            maxlength="14"
+            #password="ngModel"
+          />
+          <mat-error *ngIf="password.invalid">
+            <p *ngIf="password.errors.required">Password is required</p>
+            <p *ngIf="password.errors.minlength">
+              Password must be of at least 6 characters
+            </p>
+            <p *ngIf="password.errors.maxlength">
+              Password must be of at most 14 characters
+            </p>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            type="password"
+            ngModel
+            #confirmPassword="ngModel"
+            placeholder="Confirm Password"
+            name="confirmPassword"
+            required
+          />
+          <mat-error *ngIf="confirmPassword.invalid">
+            <p *ngIf="confirmPassword.errors.required">
+              Confirm Password is required
+            </p>
+            <p *ngIf="confirmPassword.value !== password.value">
+              Confirm Password should be same as Password
+            </p>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md"></div>
+      <div class="col-md">
+        <button mat-flat-button color="primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

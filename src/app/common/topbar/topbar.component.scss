@@ -1,0 +1,62 @@
+.mat-toolbar {
+  background-color: #001021;
+  color: #E8E9F3;
+
+  img {
+    height: 1.4rem;
+  }
+
+  a {
+    color: #f5f5f5b1;
+    margin: 0.25rem;
+    text-decoration: none;
+    font-size: medium;
+    font-weight: normal;
+  }
+
+  a:hover {
+    color: #f5f5f5;
+    transition: 0.5s ease-in;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: auto;
+
+    li {
+      display: inline;
+    }
+  }
+
+  .user-profile {
+
+    // margin: -0.8rem;
+    .mat-menu {
+      font-size: 10px;
+      font-weight: 300;
+    }
+
+    .mat-icon {
+      margin-top: -3px;
+    }
+
+  }
+
+  button {
+    color: #f5f5f5b1;
+    padding: 0.1rem !important;
+    font-size: 16px;
+
+    &:hover {
+      color: #f5f5f5;
+    }
+  }
+
+  .mat-menu-content {
+    .mat-icon {
+      margin-right: 5px;
+    }
+  }
+
+}

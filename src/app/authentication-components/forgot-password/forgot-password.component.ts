@@ -1,0 +1,24 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss'],
+})
+export class ForgotPasswordComponent implements OnInit {
+  currentStep: number = 1;
+  token: string;
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  stepChange(isNext: boolean): void {
+    if (isNext) {
+      this.currentStep++;
+    }
+  }
+
+  storeToken(token: string): void {
+    this.token = token;
+  }
+}

@@ -1,0 +1,8 @@
+::ng-deep .mat-dialog-content::-webkit-scrollbar {
+    display: none;
+}
+
+::ng-deep .mat-dialog-content {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

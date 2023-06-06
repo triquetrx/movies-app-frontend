@@ -1,0 +1,74 @@
+<div class="container">
+  <div
+    *ngIf="alert?.isAlert"
+    class="alert alert-{{ alert?.alertType }} mb-2"
+    role="alert"
+  >
+    {{ alert?.alertMessage }}
+  </div>
+  <h4 class="text-secondary">Add new theatre</h4>
+  <form
+    action="POST"
+    #theatreForm="ngForm"
+    (ngSubmit)="theatreSubmit(theatreForm)"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Theatre name</mat-label>
+      <input
+        matInput
+        type="text"
+        required
+        placeholder="Theatre Name"
+        ngModel
+        name="theatreName"
+        #theatreName="ngModel"
+      />
+      <mat-error *ngIf="theatreName.invalid">
+        Theatre name is required
+      </mat-error>
+    </mat-form-field>
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Theatre city</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            placeholder="Theatre city"
+            ngModel
+            name="city"
+            #city="ngModel"
+          />
+          <mat-error *ngIf="city.invalid"> Theatre city is required </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Theatre Cost</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            placeholder="Theatre Cost Link"
+            ngModel
+            pattern="[0-9]+"
+            name="cost"
+            #cost="ngModel"
+          />
+          <mat-error *ngIf="cost.invalid">
+            Theatre Cost is required and numbers only
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-4"></div>
+      <div class="col">
+        <button type="submit" mat-flat-button color="primary">
+          Add new theatre
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

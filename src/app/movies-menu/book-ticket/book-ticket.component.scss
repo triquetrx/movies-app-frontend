@@ -1,0 +1,26 @@
+#movie-booking {
+    color: #e8e9f3;
+}
+
+.mat-divider {
+    border-top-color: #e8e9f3
+}
+
+.mat-card {
+    margin: 0.5rem;
+    background-color: rgba($color: #001021, $alpha: 0.4);
+    color: #e8e9f3;
+}
+
+.mat-flat-button {
+    width: 100%;
+    background-color: transparent;
+    color: #e8e9f3;
+    border-radius: 0.5rem;
+    border: 1px solid #d12121;
+
+    p {
+        margin-top: -1rem;
+        margin-bottom: 0px;
+    }
+}

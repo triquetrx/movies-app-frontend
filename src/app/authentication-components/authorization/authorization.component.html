@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <img
+        src="../../assets/login-page.png"
+        alt="Login Page Image"
+        class="img-fluid"
+      />
+    </div>
+    <div class="col-md mt-2 mt-md-5">
+      <h3 class="text-secondary text-center text-md-start">
+        Sign in to get started
+      </h3>
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Login">
+          <login (isLoggedIn)="validateUser($event)"></login>
+        </mat-tab>
+        <mat-tab label="Sign up">
+          <signup></signup>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

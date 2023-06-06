@@ -1,0 +1,33 @@
+.screen {
+    width: 100%;
+    border-radius: 2px;
+    border: 2px solid #d12121;
+}
+
+table {
+    width: 80%;
+
+    .active {
+        color: #d12121;
+    }
+
+    .disabled {
+        color: #00102129;
+
+        &:hover {
+            cursor: default;
+        }
+    }
+}
+
+td {
+    color: #00102182;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.mat-flat-button {
+    width: 100%;
+}

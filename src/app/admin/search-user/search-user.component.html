@@ -1,0 +1,26 @@
+<mat-form-field appearance="outline" style="width: 95%">
+  <mat-label>Search User</mat-label>
+  <input
+    matInput
+    placeholder="Search user"
+    [(ngModel)]="searchUser"
+    name="searchMovie"
+    [matAutocomplete]="auto"
+  />
+  <button mat-button matSuffix mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      (click)="sendData(user)"
+      *ngFor="
+        let user of (users | async)?.payload
+          | search : searchUser
+          | slice : 0 : 4
+      "
+      [value]="user.loginId"
+    >
+      {{ user?.loginId }} | {{ user?.firstName }} {{ user?.lastName }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

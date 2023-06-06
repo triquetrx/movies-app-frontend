@@ -1,0 +1,49 @@
+<div class="container-fluid mt-md-4 my-3">
+  <div
+    class="alert alert-{{ alert?.alertType }} my-4"
+    *ngIf="alert?.isAlert"
+    role="alert"
+  >
+    {{ alert?.alertMessage }}
+  </div>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <mat-form-field appearance="outline">
+      <mat-label>Email ID or Login ID</mat-label>
+      <input
+        matInput
+        type="text"
+        ngModel
+        #emailIdOrLoginId="ngModel"
+        name="emailIdOrLoginId"
+        placeholder="Email ID or Username"
+        required
+      />
+      <mat-error *ngIf="emailIdOrLoginId.invalid"
+        >Email ID or Username is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        ngModel
+        #password="ngModel"
+        name="password"
+        placeholder="Password"
+        required
+      />
+      <mat-error>Password is required</mat-error>
+    </mat-form-field>
+    <div class="row">
+      <div class="col">
+        <a class="text-secondary px-1" routerLink="/forgot-password"
+          >Forgot Password ?</a
+        >
+      </div>
+      <div class="col">
+        <button mat-flat-button type="submit" color="primary">Login</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div
+    *ngIf="alert?.isAlert"
+    class="alert alert-{{ alert?.alertType }} mb-2"
+    role="alert"
+  >
+    {{ alert?.alertMessage }}
+  </div>
+  <h4 class="text-secondary">
+    '{{ data?.type }}' seats for '{{ data?.movieName }}'
+  </h4>
+  <h6 class="text-secondary">
+    Show Time: {{ data?.showTime }} | Assigned seats: {{ data?.seats }}
+  </h6>
+  <mat-divider class="mb-2"></mat-divider>
+  <form
+    #updateSeatForm="ngForm"
+    class="mt-3"
+    (ngSubmit)="updateSeat(updateSeatForm)"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Number of seats</mat-label>
+      <input
+        matInput
+        type="text"
+        name="numberOfSeats"
+        pattern="[0-9]+"
+        ngModel
+        #numberOfSeats="ngModel"
+        placeholder="Number of seats"
+        required
+      />
+      <mat-error *ngIf="numberOfSeats?.invalid">
+        Number of seats is required
+      </mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit">Update</button>
+    <button
+      mat-flat-button
+      class="my-1"
+      color="accent"
+      mat-dialog-close
+      type="submit"
+    >
+      Cancel
+    </button>
+  </form>
+</div>

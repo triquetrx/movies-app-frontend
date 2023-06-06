@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <h3 class="text-secondary mb-2">Add Show</h3>
+  <mat-divider></mat-divider>
+  <div class="theatre-search" *ngIf="!isTheatreSelected">
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        placeholder="Search Theatre"
+        [(ngModel)]="searchText"
+        name="searchMovie"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          (click)="addTheatre(theatre)"
+          *ngFor="
+            let theatre of (theatres | async)?.payload
+              | searchTheatre : searchText
+              | slice : 0 : 3
+          "
+          [value]="theatre?.theatreName"
+        >
+          {{ theatre?.theatreName }}
+        </mat-option>
+        <mat-option class="text-secondary" (click)="addNewTheatre()">
+          No theatre found, add new?
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="mt-2" *ngIf="isTheatreSelected">
+    <h5 class="text-secondary">
+      Add Shows for {{ theatreSelected?.theatreName }}
+    </h5>
+    <div
+      class="row text-secondary my-3 mx-1"
+      *ngFor="let show of shows; let i = index"
+    >
+      <div class="col h6">Show {{ i + 1 }}</div>
+      <div class="col h6">{{ show?.showTime }}</div>
+      <div class="col h6">{{ show?.seats }}</div>
+    </div>
+    <form
+      class="row mt-3"
+      *ngIf="shows?.length <= 6"
+      #showForm="ngForm"
+      (ngSubmit)="addShow(showForm)"
+    >
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Show Time</mat-label>
+          <input
+            matInput
+            type="time"
+            placeholder="Show Time"
+            name="showTime"
+            ngModel
+            #showTime="ngModel"
+            required
+          />
+          <mat-error *ngIf="showTime.invalid">Show time is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Number of seats</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            pattern="[0-9]+"
+            placeholder="Number of seats"
+            ngModel
+            name="seats"
+            #seats="ngModel"
+          />
+          <mat-error *ngIf="seats.invalid">
+            Seats are required and number only
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <button mat-flat-button type="submit" color="primary">Add</button>
+      </div>
+    </form>
+    <button mat-flat-button class="mt-3" color="primary" (click)="addShows()">
+      Submit
+    </button>
+    <button mat-flat-button color="accent" (click)="cancelAdd()">Cancel</button>
+  </div>
+</div>

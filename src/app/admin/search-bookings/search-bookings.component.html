@@ -1,0 +1,26 @@
+<mat-form-field appearance="outline" style="width: 95%">
+  <mat-label>Search Booking</mat-label>
+  <input
+    matInput
+    placeholder="Search Booking"
+    [(ngModel)]="searchBooking"
+    name="searchBooking"
+    [matAutocomplete]="auto"
+  />
+  <button mat-button matSuffix mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      (click)="viewMore(booking)"
+      *ngFor="
+        let booking of (bookings | async)?.payload
+          | searchBookings : searchBooking
+          | slice : 0 : 4
+      "
+      [value]="booking?.userId"
+    >
+      {{ booking?._id }} | {{ booking?.movieName }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

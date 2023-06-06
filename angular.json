@@ -48,6 +48,9 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "allowedCommonJsDependencies": [
+                "jquery"
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -86,6 +89,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
+            "codeCoverage": true,
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
@@ -123,6 +127,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "movies-app"
 }

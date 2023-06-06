@@ -1,0 +1,18 @@
+<div *ngIf="isAdmin; else user">
+  <button
+    class="m-1"
+    mat-flat-button
+    color="primary"
+    routerLink="/admin/{{ movieName }}/update"
+  >
+    Update Shows
+  </button>
+  <button class="m-1" mat-flat-button color="accent" (click)="delete()">
+    Delete
+  </button>
+</div>
+<ng-template #user>
+  <button routerLink="{{ movieName }}/details" mat-flat-button color="primary">
+    Show More
+  </button>
+</ng-template>

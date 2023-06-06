@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:3000/api/v1.0/moviebooking',
+  tmdbApiKey: '99743eb314df7376ac43569c1d1fb124'
 };
 
 /*

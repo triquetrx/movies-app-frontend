@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <form #resetTokenForm="ngForm" (ngSubmit)="resetToken(resetTokenForm)">
+    <mat-form-field appearance="outline">
+      <mat-label>Please enter reset token you received</mat-label>
+      <input
+        matInput
+        type="text"
+        ngModel
+        #token="ngModel"
+        name="token"
+        placeholder="Please enter your token"
+        required
+      />
+      <mat-error *ngIf="token.invalid"> Token is required </mat-error>
+    </mat-form-field>
+    <div class="row">
+      <div class="col-md"></div>
+      <div class="col-md">
+        <button mat-flat-button color="primary">Next</button>
+      </div>
+    </div>
+  </form>
+</div>

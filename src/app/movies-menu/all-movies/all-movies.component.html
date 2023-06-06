@@ -1,0 +1,37 @@
+<div class="container-fluid p-2">
+  <div class="row p-2">
+    <div class="col-md pt-2">
+      <h3 class="text-center text-md-start">Movies Showing Now 🎥</h3>
+    </div>
+    <div class="col-md-4" style="font-size: 14px">
+      <search-movie [movies]="allMovies"></search-movie>
+    </div>
+    <hr />
+    <div class="row justify-content-center">
+      <div class="col-auto" *ngFor="let movie of (allMovies | async)?.payload">
+        <div class="card text-center mx-2 my-2" style="width: 16rem">
+          <img
+            class="card-img-top movie-poster"
+            src="{{ movie.moviePosterLink }}"
+          />
+          <div class="card-body">
+            <div class="card-title my-2">
+              <h5>
+                {{
+                  movie?.movieName?.length > 20
+                    ? movie.movieName?.slice(0, 20) + "..."
+                    : movie?.movieName
+                }}
+              </h5>
+              <p class="text-secondary">Date: {{ movie.releaseDate | date }}</p>
+            </div>
+            <movies-button
+              [movieName]="movie.movieName"
+              (isUpdate)="updateSelf($event)"
+            ></movies-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

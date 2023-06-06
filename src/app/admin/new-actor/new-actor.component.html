@@ -1,0 +1,56 @@
+<div class="container">
+  <div
+    *ngIf="alert?.isAlert"
+    class="alert alert-{{ alert?.alertType }} mb-2"
+    role="alert"
+  >
+    {{ alert?.alertMessage }}
+  </div>
+  <h4 class="text-secondary">Add new actor</h4>
+  <form action="POST" #actorForm="ngForm" (ngSubmit)="actorSubmit(actorForm)">
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Actor name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            placeholder="Actor Name"
+            ngModel
+            name="actorName"
+            #actorName="ngModel"
+          />
+          <mat-error *ngIf="actorName.invalid">
+            Actor name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Actor Image Link</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            placeholder="Actor Image Link"
+            ngModel
+            name="actorPhotoLink"
+            #actorPhotoLink="ngModel"
+          />
+          <mat-error *ngIf="actorPhotoLink.invalid">
+            Actor Image Link is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col">
+        <button type="submit" mat-flat-button color="primary">
+          Add new actor
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

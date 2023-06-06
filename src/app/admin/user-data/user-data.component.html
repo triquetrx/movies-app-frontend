@@ -1,0 +1,73 @@
+<div class="container my-4">
+  <div
+    *ngIf="alert?.isAlert"
+    class="alert alert-{{ alert?.alertType }}"
+    role="alert"
+  >
+    {{ alert?.alertMessage }}
+  </div>
+  <div class="row">
+    <div class="col pt-2">
+      <h3 class="text-center text-md-start">All Users 👥</h3>
+    </div>
+    <div class="col-md-4" style="font-size: 14px">
+      <search-user [users]="allUsers"></search-user>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="card my-3" *ngFor="let user of (allUsers | async)?.payload">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2">
+          <img
+            *ngIf="user?.gender === 'MALE'"
+            src="../../../assets/avatar_male.png"
+            class="card-img-top"
+            alt="avatar_male"
+          />
+          <img
+            *ngIf="user?.gender === 'FEMALE'"
+            src="../../../assets/avatar_female.png"
+            class="card-img-top"
+            alt="avatar_female"
+          />
+        </div>
+        <div class="col-md mt-2">
+          <div class="row">
+            <div class="col">
+              <h4 class="card-title">
+                {{ user.firstName }} {{ user.lastName }}
+              </h4>
+            </div>
+            <div class="col text-end">
+              <p>{{ user._id }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h6 class="card-text">Role: {{ user.role }}</h6>
+              <h6 class="card-text d-md-block d-none">
+                Email: {{ user.email }}
+              </h6>
+              <h6 class="card-text d-md-none d-block">
+                {{ user.email }}
+              </h6>
+            </div>
+            <div class="col text-end">
+              <h6 class="card-text">Username: {{ user.loginId }}</h6>
+              <h6 class="card-text">Contact: {{ user.contactNumber }}</h6>
+            </div>
+          </div>
+          <button
+            mat-flat-button
+            color="primary"
+            class="mt-3 w-100"
+            (click)="giveAdminAccess(user.loginId)"
+          >
+            Give Admin Access
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

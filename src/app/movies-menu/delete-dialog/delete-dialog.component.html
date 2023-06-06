@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div
+    *ngIf="alert?.isAlert"
+    class="alert alert-{{ alert?.alertType }} mb-2"
+    role="alert"
+  >
+    {{ alert?.alertMessage }}
+  </div>
+  <h5 class="text-secondary">Are you sure, you want to delete {{ data }}?</h5>
+  <mat-divider class="my-3"></mat-divider>
+  <div class="row">
+    <div class="col">
+      <button mat-flat-button (click)="close()" color="primary">Cancel</button>
+    </div>
+    <div class="col">
+      <button mat-flat-button (click)="delete()" color="accent">Delete</button>
+    </div>
+  </div>
+</div>

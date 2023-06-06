@@ -1,0 +1,42 @@
+.mat-expansion-panel-header-description {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lead {
+    font-weight: 500;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+    margin-top: -0.28rem;
+}
+
+#showing-in {
+    margin-bottom: -0.8rem;
+}
+
+.col p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    padding-top: 0.2rem;
+}
+
+.mat-icon {
+    vertical-align: bottom;
+    padding-top: 2px;
+}
+
+button {
+    width: 100%;
+
+    .mat-icon {
+        padding: 0;
+        margin-bottom: 0.3rem;
+    }
+}
+
+.mat-expansion-panel {
+    border-radius: 10px;
+    background: #e8e9f3;
+    box-shadow: 8px 8px 16px #a5a5ad, -8px -8px 16px #ffffff;
+}

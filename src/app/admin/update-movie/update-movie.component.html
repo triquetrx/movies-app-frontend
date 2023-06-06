@@ -1,0 +1,78 @@
+<div class="container-fluid py-3">
+  <h4 class="text-secondary">
+    Update seats for Movie '{{ movie?.movieName }}'
+  </h4>
+  <mat-divider></mat-divider>
+
+  <ng-container *ngIf="movie?.shows?.length > 0; else noShowAvailable">
+    <div class="mb-5 px-1 pb-5">
+      <div class="row mt-3">
+        <div class="col">
+          <h5 class="text-secondary">Showing in 🎭</h5>
+        </div>
+        <div class="col-2 text-end">
+          <h5 class="text-secondary">x{{ movie?.shows?.length }}</h5>
+        </div>
+      </div>
+      <mat-divider class="mb-3"></mat-divider>
+      <mat-accordion *ngFor="let show of movie?.shows; let i = index">
+        <mat-expansion-panel class="mb-3">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="lead text-secondary">
+              {{ theatres[i]?.theatreName }}
+            </mat-panel-title>
+            <mat-panel-description class="lead">
+              {{ show?.showDetails?.length }} shows
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div
+            class="row mt-1 px-2"
+            *ngFor="let showDetail of show?.showDetails"
+          >
+            <div class="col text-md-start text-center">
+              <p>
+                <mat-icon>access_time</mat-icon>
+                {{ showDetail?.showTime }} : {{ showDetail?.seats }} seats
+              </p>
+            </div>
+            <div class="col-md-1 mx-1 my-1 my-md-0">
+              <button
+                mat-flat-button
+                color="primary"
+                (click)="
+                  addOrRemoveSeats(
+                    'ADD',
+                    showDetail?.showTime,
+                    showDetail?.seats,
+                    theatres[i]
+                  )
+                "
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            <div class="col-md-1 mx-1 my-1 my-md-0">
+              <button
+                mat-flat-button
+                color="accent"
+                (click)="
+                  addOrRemoveSeats(
+                    'DELETE',
+                    showDetail?.showTime,
+                    showDetail?.seats,
+                    theatres[i]
+                  )
+                "
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </ng-container>
+  <ng-template class="mt-3 mb-5 pb-5" #noShowAvailable>
+    <h6 class="text-secondary">No Shows Available</h6>
+  </ng-template>
+</div>

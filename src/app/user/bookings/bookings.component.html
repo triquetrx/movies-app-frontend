@@ -1,0 +1,26 @@
+<div class="container my-2">
+  <h3>My Bookings</h3>
+  <mat-divider></mat-divider>
+  <div *ngFor="let ticket of (bookings | async)?.payload" class="row m-3">
+    <article class="card fl-left">
+      <section class="date">
+        <time>
+          <span>{{ ticket?.showTime?.split(":")[0] }}</span
+          ><span>{{ ticket?.showTime?.split(":")[1] }}</span>
+        </time>
+      </section>
+      <section class="card-cont">
+        <small>Booking ID: {{ ticket?._id }}</small>
+        <h3>{{ ticket?.movieName }}</h3>
+        <div class="even-date">
+          <time>
+            <span>{{ ticket?.seatNumbers }}</span>
+          </time>
+        </div>
+        <div class="even-info">
+          <p>Theatre ID: {{ ticket?.theatreId }}</p>
+        </div>
+      </section>
+    </article>
+  </div>
+</div>

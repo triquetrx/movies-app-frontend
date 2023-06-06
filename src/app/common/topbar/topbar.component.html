@@ -1,0 +1,73 @@
+<mat-toolbar>
+  <img
+    src="../../assets/my-ticket-logo.png"
+    alt="myTicket-logo"
+    class="img-fluid"
+    id="brand-logo"
+  />
+
+  <ul class="ms-auto">
+    <li>
+      <a routerLink="movies">Home</a>
+    </li>
+    <ng-container class="admin" *ngIf="role === 'ADMIN'">
+      <li>
+        <a routerLink="/admin/add-movie">Add Movies</a>
+      </li>
+
+      <button
+        style="font-weight: 400"
+        mat-button
+        [matMenuTriggerFor]="adminMenu"
+      >
+        More
+        <mat-icon style="margin-top: -2px; margin-left: -5px"
+          >keyboard_arrow_down</mat-icon
+        >
+      </button>
+      <mat-menu #adminMenu>
+        <a mat-menu-item routerLink="/admin/all-bookings">
+          <mat-icon>movie</mat-icon> <span>Bookings</span>
+        </a>
+        <a mat-menu-item routerLink="/admin/all-users">
+          <mat-icon>supervised_user_circle</mat-icon> <span>Users</span>
+        </a>
+        <a class="logout" mat-menu-item routerLink="/movies" (click)="logout()">
+          <mat-icon>logout</mat-icon> <span>Logout</span>
+        </a>
+      </mat-menu>
+    </ng-container>
+    <ng-container *ngIf="role === 'USER'">
+      <li>
+        <a routerLink="/user/my-bookings"> My Bookings </a>
+      </li>
+      <li class="user-profile">
+        <button
+          mat-button
+          [matMenuTriggerFor]="userMenu"
+          style="vertical-align: middle; margin-top: -0.11rem"
+        >
+          <span style="font-weight: 400; padding-bottom: 10rem">{{
+            userName
+          }}</span>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="viewProfile()">
+            <mat-icon>account_circle</mat-icon> View Profile
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon> Logout
+          </button>
+        </mat-menu>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="!role">
+      <li>
+        <a routerLink="/login">Login</a>
+      </li>
+      <li>
+        <a routerLink="about-us">About Us</a>
+      </li>
+    </ng-container>
+  </ul>
+</mat-toolbar>

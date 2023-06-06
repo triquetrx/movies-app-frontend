@@ -1,0 +1,71 @@
+<div class="container py-4">
+  <div class="row">
+    <div class="col-md-5 py-3">
+      <img
+        *ngIf="(aboutUser | async)?.payload?.gender === 'MALE'"
+        src="../../../assets/avatar_male.png"
+        alt=""
+        class="img-fluid"
+      />
+      <img
+        *ngIf="(aboutUser | async)?.payload?.gender === 'FEMALE'"
+        src="../../../assets/avatar_female.png"
+        alt=""
+        class="img-fluid"
+      />
+    </div>
+
+    <div class="col-md mt-5 pt-3">
+      <div class="d-flex justify-content-md-start justify-content-center">
+        <table class="table">
+          <tr>
+            <td><h4>Name</h4></td>
+            <td>
+              <h4>
+                {{ (aboutUser | async)?.payload?.firstName }}
+                {{ (aboutUser | async)?.payload?.lastName }}
+              </h4>
+            </td>
+          </tr>
+          <tr>
+            <td><h4>Username</h4></td>
+            <td>
+              <h4>
+                {{ (aboutUser | async)?.payload?.loginId }}
+              </h4>
+            </td>
+          </tr>
+          <tr>
+            <td><h4>Email ID</h4></td>
+            <td>
+              <h4>
+                {{ (aboutUser | async)?.payload?.email }}
+              </h4>
+            </td>
+          </tr>
+          <tr>
+            <td><h4>Gender</h4></td>
+            <td>
+              <h4>
+                {{ (aboutUser | async)?.payload?.gender }}
+              </h4>
+            </td>
+          </tr>
+          <tr>
+            <td><h4>Contact</h4></td>
+            <td>
+              <h4>
+                {{ (aboutUser | async)?.payload?.contactNumber }}
+              </h4>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-md">
+          <button class="w-100" mat-flat-button color="accent">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

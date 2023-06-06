@@ -1,0 +1,25 @@
+<mat-form-field appearance="outline" style="width: 95%">
+  <mat-label>Search Movie</mat-label>
+  <input
+    matInput
+    placeholder="Search Movie"
+    [(ngModel)]="searchMovie"
+    name="searchMovie"
+    [matAutocomplete]="auto"
+  />
+  <button mat-button matSuffix mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      *ngFor="
+        let movie of (movies | async)?.payload
+          | searchMovie : searchMovie
+          | slice : 0 : 4
+      "
+      (click)="viewMore(movie?.movieName)"
+    >
+      {{ movie?.movieName }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

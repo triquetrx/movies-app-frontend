@@ -1,0 +1,37 @@
+<div class="container-fluid text-center py-3" id="movie-booking">
+  <h3>{{ movie?.movieName }}</h3>
+  <mat-divider></mat-divider>
+  <mat-card class="my-4" *ngFor="let theatre of theatreDetails; let i = index">
+    <div class="row m-2">
+      <div class="col text-start">
+        <strong>
+          {{ (theatre | async)?.payload?.theatreName }}
+        </strong>
+      </div>
+      <div class="col text-end">
+        <strong>₹ {{ (theatre | async)?.payload?.cost }}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <mat-card-content
+        class="col"
+        *ngFor="let show of movie?.shows[i]?.showDetails"
+      >
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="bookTicket(show, movie?.shows[i]?.theatreId)"
+        >
+          <strong>{{ show?.showTime }}</strong>
+          <p>
+            {{
+              show?.seats - show?.bookings?.length < 30
+                ? "Filling Fast"
+                : "Prime Time"
+            }}
+          </p>
+        </button>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,30 @@
+<mat-dialog-content>
+  <div class="container-fluid">
+    <h2 class="text-center mb-2">Booking Details</h2>
+    <mat-divider></mat-divider>
+    <h5 class="text-center mt-3">User details</h5>
+    <p>
+      User name : {{ (userDetail | async)?.payload?.firstName }}
+      {{ (userDetail | async)?.payload?.lastName }}
+    </p>
+    <p>Email: {{ (userDetail | async)?.payload?.email }}</p>
+    <p>Login ID: {{ (userDetail | async)?.payload?.loginId }}</p>
+    <mat-divider></mat-divider>
+    <h5 class="text-center mt-3">Movie details</h5>
+    <div class="show-details">
+      <p>Movie Name: {{ data?.movieName }}</p>
+      <p>Seat Numbers: {{ data?.seatNumbers }}</p>
+      <p>Total Cost: {{ data?.totalCost }}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <h5 class="text-center mt-3">Theatre details</h5>
+    <div class="theatre-details">
+      <p>Theatre Name: {{ (theatreDetail | async)?.payload?.theatreName }}</p>
+      <p>City: {{ (theatreDetail | async)?.payload?.city }}</p>
+      <p>Show Time: {{ data?.showTime }}</p>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>
